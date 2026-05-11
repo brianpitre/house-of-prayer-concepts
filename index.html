@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>House of Prayer — AI Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Raleway:wght@400;500;700;900&family=Source+Serif+Pro:wght@300;400;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --green: #589a61;
+    --green-dark: #467a4f;
+    --black: #000;
+    --gray: #6d6d6d;
+    --gray-light: #e1e1e1;
+    --bg: #ffffff;
+    --bg-soft: #fafafa;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--black);
+    font-family: 'Source Serif Pro', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ----- Header ----- */
+  header {
+    border-bottom: 1px solid var(--gray-light);
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 22px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .brand .accent { color: var(--green); }
+  .nav-meta {
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  /* ----- Hero ----- */
+  .hero {
+    text-align: center;
+    padding: 96px 32px 64px;
+    border-bottom: 1px solid var(--gray-light);
+    background: var(--bg-soft);
+  }
+  .hero .eyebrow {
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Oswald', 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: clamp(36px, 6vw, 68px);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.05;
+    color: var(--black);
+  }
+  .hero h1 .accent { color: var(--green); }
+  .hero .lede {
+    margin: 28px auto 0;
+    max-width: 640px;
+    font-size: 18px;
+    color: var(--gray);
+    font-weight: 300;
+    line-height: 1.65;
+  }
+  .hero .divider {
+    width: 60px;
+    height: 3px;
+    background: var(--green);
+    margin: 32px auto 0;
+  }
+
+  /* ----- Gallery ----- */
+  main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; gap: 20px; } main { padding: 56px 20px 80px; } }
+
+  .card {
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid var(--gray-light);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+    border-color: var(--green);
+  }
+  .thumb-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #f1f1f1;
+  }
+  .thumb-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .card:hover .thumb-wrap img { transform: scale(1.04); }
+  .thumb-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.25) 100%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .card:hover .thumb-wrap::after { opacity: 1; }
+
+  .card-body {
+    padding: 18px 22px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-label {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  .card-action {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .card-action::after {
+    content: ' →';
+    transition: margin-left 0.2s ease;
+  }
+  .card:hover .card-action::after { margin-left: 6px; }
+
+  /* ----- Footer ----- */
+  footer {
+    border-top: 1px solid var(--gray-light);
+    background: #fff;
+    padding: 32px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  /* ----- Lightbox ----- */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 40px;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox-inner {
+    position: relative;
+    max-width: 1400px;
+    width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox-img {
+    max-width: 100%;
+    max-height: calc(100vh - 160px);
+    object-fit: contain;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  }
+  .lightbox-caption {
+    margin-top: 20px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .lightbox-caption .count {
+    color: var(--green);
+    margin-left: 12px;
+  }
+
+  .lb-btn {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    user-select: none;
+  }
+  .lb-btn:hover {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .lb-close { top: 24px; right: 24px; }
+  .lb-prev { left: 24px; top: 50%; transform: translateY(-50%); }
+  .lb-next { right: 24px; top: 50%; transform: translateY(-50%); }
+  @media (max-width: 600px) {
+    .lightbox { padding: 16px; }
+    .lb-prev { left: 8px; }
+    .lb-next { right: 8px; }
+    .lb-close { top: 12px; right: 12px; }
+  }
+
+  body.lb-open { overflow: hidden; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#" class="brand">House of Prayer<span class="accent"> · </span>Concepts</a>
+    <span class="nav-meta">AI Visual Direction</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Visual Exploration</div>
+  <h1>House of Prayer<br /><span class="accent">AI Concepts</span></h1>
+  <p class="lede">A collection of generative concept imagery exploring tone, atmosphere, and visual language for the House of Prayer message series.</p>
+  <div class="divider"></div>
+</section>
+
+<main>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  © House of Prayer · Concept Gallery
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Concept image viewer">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next">›</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" id="lbImg" alt="" />
+    <div class="lightbox-caption" id="lbCaption"></div>
+  </div>
+</div>
+
+<script>
+  const concepts = [
+    "hf_20260511_194405_decdffc5-1a92-4b6d-9e7a-63865a724833",
+    "hf_20260511_195109_ad555477-c837-4c41-8c49-27867a5b874a",
+    "hf_20260511_200006_43232e71-908d-4520-854e-828ebd777a60",
+    "hf_20260511_200010_1884ba46-8afa-453c-8471-f5c7b0545766",
+    "hf_20260511_200019_b3885a96-45e3-4e54-af03-a435cd604272",
+    "hf_20260511_200023_95be1774-7dc0-4db7-95b7-865aa14a2c0d",
+    "hf_20260511_201235_e092185f-883d-4849-8d51-59b516e887c1",
+    "hf_20260511_201239_b09ec07a-3b0b-43a2-8813-fdf7b281f05f",
+    "hf_20260511_201252_a394fb95-12b4-4d0e-a0db-260ab9683cef",
+    "hf_20260511_201802_4d5774d0-adef-4bb9-9c75-3522e4a81e82",
+    "hf_20260511_201815_a1dd85f1-eb7f-483f-bc10-b01fd78bf39b",
+    "hf_20260511_201820_6b37251a-db3a-4674-837a-02f8d4c960ca"
+  ];
+
+  const pad = n => String(n).padStart(2, '0');
+  const grid = document.getElementById('grid');
+
+  concepts.forEach((name, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.index = i;
+    card.innerHTML = `
+      <div class="thumb-wrap">
+        <img loading="lazy" src="thumbs/${name}.jpg" alt="Concept ${pad(i + 1)}" />
+      </div>
+      <div class="card-body">
+        <span class="card-label">Concept ${pad(i + 1)}</span>
+        <span class="card-action">View</span>
+      </div>
+    `;
+    card.addEventListener('click', () => openLightbox(i));
+    grid.appendChild(card);
+  });
+
+  // ----- Lightbox -----
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCaption = document.getElementById('lbCaption');
+  let current = 0;
+
+  function openLightbox(i) {
+    current = i;
+    render();
+    lb.classList.add('active');
+    document.body.classList.add('lb-open');
+  }
+  function closeLightbox() {
+    lb.classList.remove('active');
+    document.body.classList.remove('lb-open');
+  }
+  function next() { current = (current + 1) % concepts.length; render(); }
+  function prev() { current = (current - 1 + concepts.length) % concepts.length; render(); }
+  function render() {
+    const name = concepts[current];
+    lbImg.src = `Concepts/${name}.png`;
+    lbImg.alt = `Concept ${pad(current + 1)}`;
+    lbCaption.innerHTML = `Concept ${pad(current + 1)} <span class="count">${pad(current + 1)} / ${pad(concepts.length)}</span>`;
+  }
+
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbNext').addEventListener('click', next);
+  document.getElementById('lbPrev').addEventListener('click', prev);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+</script>
+
+</body>
+</html>
